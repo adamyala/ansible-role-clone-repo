@@ -1,0 +1,45 @@
+---
+- name: installing git
+  apt:
+    name: git
+    state: present
+  become: yes
+
+- name: creating source directory web"
+  file:
+    path: "{{ dest_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: yes
+  become: yes
+
+- file:
+    path: "{{ dest_dir }}"
+    mode: 0777
+    state: directory
+  become: yes
+
+- name: cloning web repo
+  git:
+    repo: "{{ gh_repo }}"
+    version: "{{ gh_branch | default(omit) }}"
+    dest: "{{ dest_dir }}"
+    accept_hostkey: yes
+    force: yes
+
+- name: set app code user and group permissions
+  file:
+    path: "{{ dest_dir }}"
+    state: directory
+    recurse: yes
+    owner: "{{ dest_dir_owner }}"
+    group: "{{ dest_dir_group }}"
+  become: yes
+
+- name: chmoding app code dir
+  file:
+    path: "{{ dest_dir }}"
+    state: directory
+    mode: "{{ dest_dir_perm }}"
+  become: yes

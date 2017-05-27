@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Adam Yala
+  description: A role for cloning private github repos to remote hosts
+  issue_tracker_url: https://github.com/vforgione/ansible-role-python/issues
+  license: license (MIT)
+  min_ansible_version: 2.1
+  github_branch: master
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - utopic
+        - vivid
+        - wily
+        - xenial
+    - name: Debian
+      versions:
+        - squeeze
+        - stretch
+        - wheezy
+  galaxy_tags:
+    - python
