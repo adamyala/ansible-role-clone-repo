@@ -5,7 +5,7 @@
     state: present
   become: yes
 
-- name: creating source directory web"
+- name: creating source directory"
   file:
     path: "{{ dest_dir }}"
     state: directory
@@ -20,7 +20,7 @@
     state: directory
   become: yes
 
-- name: cloning web repo
+- name: cloning repo
   git:
     repo: "{{ gh_repo }}"
     version: "{{ gh_branch | default(omit) }}"
