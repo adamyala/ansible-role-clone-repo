@@ -23,7 +23,7 @@
 - name: cloning repo
   git:
     repo: "{{ gh_repo }}"
-    version: "{{ gh_branch | default(omit) }}"
+    version: "{{ gh_branch | default('master') }}"
     dest: "{{ dest_dir }}"
     accept_hostkey: yes
     force: yes
